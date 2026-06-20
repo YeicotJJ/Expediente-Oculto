@@ -54,7 +54,7 @@ body{font-family:'Inter',system-ui,sans-serif;color:#ece3d2;min-height:100%;
 .btn.green:hover{background:var(--green-dk)}
 .btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
 .btn.sm{padding:9px 14px;font-size:12px}
-.btnrow{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.btnrow{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px; justify-content: center;}
 
 .eyebrow{font-family:'Oswald';letter-spacing:.28em;text-transform:uppercase;color:var(--red);
   font-size:13px;font-weight:600;margin-bottom:10px}
@@ -129,7 +129,7 @@ h2{font-family:'Oswald';font-weight:600;text-transform:uppercase;letter-spacing:
   transform:rotate(6deg);font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.8}
 .doc h4{font-family:'Oswald';text-transform:uppercase;letter-spacing:.05em;color:#1a1813;
   font-size:14px;margin-bottom:8px;border-bottom:1px solid var(--paper-line);padding-bottom:6px}
-.doc .hl{background:var(--hl);padding:0 3px;font-weight:700;box-decoration-break:clone}
+.doc .hl{background:var(--hl);padding:3px 3px;font-weight:700;box-decoration-break:clone}
 
 /* ---------- PHONE (estación 1a) ---------- */
 .phone-wrap{display:flex;justify-content:center; width: 100%;}
@@ -189,7 +189,7 @@ h2{font-family:'Oswald';font-weight:600;text-transform:uppercase;letter-spacing:
   color:#f1e7d3;margin-bottom:6px}
 .evcard .reveal{font-family:'Special Elite';font-size:12.5px;line-height:1.5;color:var(--steel);
   min-height:46px}
-.evcard .reveal .hl{background:var(--hl);color:#3a2c06;padding:0 3px;font-weight:700}
+.evcard .reveal .hl{background:var(--hl);color:#3a2c06;padding:3px 3px;font-weight:700}
 .evcard.open{border-color:var(--green)}
 .evcard .tap{font-family:'Oswald';letter-spacing:.06em;text-transform:uppercase;font-size:11px;
   color:var(--red);margin-top:8px}
@@ -236,7 +236,11 @@ h2{font-family:'Oswald';font-weight:600;text-transform:uppercase;letter-spacing:
   padding:14px 18px;width:min(360px,90%);outline:none}
 .code-input:focus{border-color:var(--red);box-shadow:0 0 0 4px rgba(181,48,36,.18)}
 .code-input::placeholder{color:#4a4030;letter-spacing:.2em}
-.code-msg{font-family:'Oswald';letter-spacing:.06em;text-transform:uppercase;font-size:13px;min-height:20px}
+.code-msg{
+  position: absolute;
+  right: 14%;
+  width: 13vw;
+  font-family:'Oswald';letter-spacing:.06em;text-transform:uppercase;font-size:13px;min-height:20px}
 .code-msg.err{color:#ff6b5e}.code-msg.ok{color:var(--green)}
 .codegrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:520px;margin:0 auto}
 @media(max-width:560px){.codegrid{grid-template-columns:1fr}}
@@ -351,7 +355,26 @@ h2{font-family:'Oswald';font-weight:600;text-transform:uppercase;letter-spacing:
 .reputation-track{width:100px;height:6px;background:rgba(0,0,0,.3);border-radius:3px;overflow:hidden}
 .reputation-fill{height:100%;background:var(--green);transition:width .5s ease}
 
-.inventory-tray{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:100;display:flex;gap:10px;background:rgba(30,24,18,.9);padding:10px 20px;border-radius:40px;border:1px solid var(--manila-dark);box-shadow:0 10px 30px var(--shadow);backdrop-filter:blur(8px);transition:transform .3s ease,opacity .3s ease}
+.inventory-tray{
+  position: fixed;
+    bottom: 20px;
+    right: 1%;
+    /* transform: translateX(-50%); */
+    z-index: 100;
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 10px;
+    background: rgba(30, 24, 18, .9);
+    padding: 10px 10px;
+    border-radius: 40px;
+    border: 1px solid var(--manila-dark);
+    box-shadow: 0 10px 30px var(--shadow);
+    backdrop-filter: blur(8px);
+    transition: transform .3s ease, opacity .3s ease;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+}
 .inventory-tray.empty{opacity:0;pointer-events:none;transform:translateX(-50%) translateY(20px)}
 .inv-item{width:40px;height:40px;background:var(--paper);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;box-shadow:0 4px 8px var(--shadow);position:relative}
 .inv-item::after{content:attr(data-tooltip);position:absolute;bottom:50px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;font-size:10px;padding:4px 8px;border-radius:4px;white-space:nowrap;opacity:0;pointer-events:none;transition:.2s;font-family:'Oswald'}
@@ -384,6 +407,79 @@ h2{font-family:'Oswald';font-weight:600;text-transform:uppercase;letter-spacing:
 .comment .c-user{font-weight:700;margin-right:6px}
 .comment .c-txt{color:#e7e9ea}
 
+/* ---------- STORY ---------- */
+.story-doc{width:100%;font-size:15px}
+.story-doc p{margin-bottom:14px}
+.story-doc .sign{font-family:'Oswald';text-transform:uppercase;letter-spacing:.1em;font-size:13px;color:var(--red);margin-top:6px}
+
+/* ---------- CHARACTER SELECT ---------- */
+.char-wrap{display:flex;flex-direction:column;gap:26px;width:100%;align-items:center;justify-content:center;flex:1}
+.char-cards{display:flex;gap:22px;flex-wrap:wrap;justify-content:center}
+.char-card{width:210px;cursor:pointer;border:2px solid transparent;border-radius:14px;padding:12px;
+  transition:.18s;background:var(--ink3)}
+.char-card:hover{transform:translateY(-3px)}
+.char-card.selected{border-color:var(--hl);box-shadow:0 0 0 3px rgba(245,213,71,.22)}
+.char-photo{height:210px;border-radius:9px}
+.char-label{font-family:'Oswald';text-transform:uppercase;letter-spacing:.08em;text-align:center;
+  margin-top:12px;font-size:16px;color:var(--manila)}
+.char-card.selected .char-label{color:var(--hl)}
+.char-card .pick{display:block;text-align:center;font-family:'Oswald';text-transform:uppercase;
+  letter-spacing:.06em;font-size:11px;color:var(--steel2);margin-top:4px}
+.char-card.selected .pick{color:var(--green)}
+.name-field{display:flex;flex-direction:column;gap:8px;width:min(380px,92%)}
+.name-field label{font-family:'Oswald';text-transform:uppercase;letter-spacing:.08em;font-size:12px;color:var(--steel)}
+.name-field input{font-family:'Special Elite';font-size:20px;background:#0d0a06;border:2px solid var(--manila-dark);
+  color:var(--hl);border-radius:8px;padding:12px 14px;outline:none;text-align:center}
+.name-field input:focus{border-color:var(--red);box-shadow:0 0 0 4px rgba(181,48,36,.18)}
+
+/* ---------- LOGBOOK (BITÁCORA) ---------- */
+.book-btn{position:fixed;bottom:20px;left:20px;z-index:120;font-family:'Oswald';text-transform:uppercase;
+  letter-spacing:.06em;font-size:13px;background:var(--ink2);color:var(--hl);border:1px solid var(--manila-dark);
+  border-radius:30px;padding:10px 16px;cursor:pointer;box-shadow:0 8px 20px var(--shadow);display:flex;gap:8px;align-items:center}
+.book-btn:hover{background:var(--ink3)}
+.book-btn .b-badge{background:var(--red);color:#fff;border-radius:50%;min-width:19px;height:19px;font-size:11px;
+  display:flex;align-items:center;justify-content:center;padding:0 4px}
+.book-pulse{animation:bookPulse .6s ease}
+@keyframes bookPulse{0%,100%{transform:none}50%{transform:scale(1.12)}}
+.book-overlay{position:fixed;inset:0;z-index:300;background:rgba(8,5,3,.7);-webkit-backdrop-filter:blur(4px);
+  backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:20px}
+.book-overlay.open{display:flex}
+.book{background:var(--paper);color:#22201a;border-radius:10px;max-width:480px;width:100%;padding:26px 26px 22px;
+  box-shadow:0 24px 60px rgba(0,0,0,.6);max-height:86vh;overflow:auto;position:relative;
+  background-image:linear-gradient(transparent 95%,rgba(120,100,70,.10) 95%);background-size:100% 30px}
+.book-title{font-family:'Oswald';text-transform:uppercase;letter-spacing:.1em;font-size:19px;color:#1a1813}
+.book-sub{font-family:'Special Elite';font-size:12px;color:#6a5e44;margin-bottom:16px}
+.book-entry{display:flex;gap:12px;padding:12px 0;border-bottom:1px dashed rgba(120,100,70,.3);align-items:flex-start}
+.book-entry .bk-ic{font-size:20px;width:24px;text-align:center}
+.book-entry .bk-label{font-family:'Oswald';text-transform:uppercase;font-size:11.5px;letter-spacing:.04em;color:#6a5e44}
+.book-entry .bk-val{font-family:'Special Elite';font-size:17px;color:#1a1813}
+.book-entry.locked .bk-ic{filter:grayscale(1);opacity:.5}
+.book-entry.locked .bk-val{color:#b6a988;font-style:italic;font-size:14px}
+.book-close{margin-top:18px;width:100%}
+
+/* ---------- ROMPECABEZAS (estación 2a) ---------- */
+.puzzle-stage{position:relative;width:min(380px,82vw);aspect-ratio:6/5;margin:6px auto;z-index:2}
+.reveal-docs{position:absolute;inset:0;display:flex;gap:14px;z-index:1}
+.reveal-docs .r-doc{flex:1;border-radius:8px; width: 20vw;}
+.reveal-docs .r-doc.shown{animation:pop .5s ease both}
+.puzzle{position:absolute;inset:0;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);
+  gap:3px;background:#0d0a06;border-radius:10px;padding:3px;z-index:4;
+  transition:transform .55s ease,opacity .55s ease;box-shadow:0 14px 34px var(--shadow)}
+.puzzle.solved{cursor:pointer;box-shadow:0 0 0 3px var(--green),0 0 32px rgba(47,158,95,.45)}
+.puzzle.removed{transform:scale(.32) rotate(10deg);opacity:0;pointer-events:none}
+.ptile{position:relative;border-radius:5px;cursor:pointer;background-image:var(--puzzle-img);
+  background-size:300% 300%;background-color:#2a2118;transition:outline .12s;overflow:hidden}
+.ptile.sel{outline:3px solid var(--hl);outline-offset:-3px;z-index:2}
+.ptile .pnum{position:absolute;inset:0;display:none;align-items:center;justify-content:center;
+  font-family:'Oswald';font-size:26px;font-weight:700;color:rgba(245,213,71,.9);text-shadow:0 2px 4px #000}
+.puzzle.no-img .ptile{background:linear-gradient(160deg,#3a2c18,#241a10)}
+.puzzle.no-img .ptile .pnum{display:flex}
+.puzzle.solved .ptile{cursor:pointer;outline:none}
+.puzzle.solved .ptile .pnum{display:none}
+.puzzle-done{text-align:center;font-family:'Oswald';text-transform:uppercase;letter-spacing:.06em;
+  font-size:13px;color:var(--steel);margin-top:10px}
+.puzzle-done.ok{color:var(--green)}
+
 </style>
 </head>
 <body>
@@ -397,6 +493,17 @@ h2{font-family:'Oswald';font-weight:600;text-transform:uppercase;letter-spacing:
 
   <!-- Inventario Flotante -->
   <div class="inventory-tray empty" id="inventoryTray"></div>
+
+  <!-- Bitácora del caso (libro de pistas) -->
+  <button class="book-btn hidden" id="bookBtn" onclick="toggleBook()">📓 Bitácora <span class="b-badge" id="bookBadge">0</span></button>
+  <div class="book-overlay" id="bookOverlay" onclick="if(event.target===this)toggleBook()">
+    <div class="book">
+      <div class="book-title">Bitácora del caso</div>
+      <div class="book-sub">Datos verificados del Expediente Oculto · úsalos para completar las pantallas.</div>
+      <div class="book-entries" id="bookEntries"></div>
+      <button class="btn sm book-close" onclick="toggleBook()">Cerrar bitácora</button>
+    </div>
+  </div>
 
   <div class="topbar">
     <div class="brand"><span class="dot"></span> Expediente Oculto · Redacción de Investigación</div>
@@ -426,10 +533,60 @@ h2{font-family:'Oswald';font-weight:600;text-transform:uppercase;letter-spacing:
         <div class="menu-title">EXPEDIENTE <span>OCULTO</span></div>
         <div class="menu-sub">Circuito de investigación · Teatro Municipal de Piura · 2026</div>
         <div class="menu-actions">
-          <button class="btn" onclick="go('intro')">▶ Iniciar investigación</button>
+          <button class="btn" onclick="go('story')">▶ Iniciar investigación</button>
           <button class="btn ghost" onclick="go('howto')">Cómo jugar</button>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ============ HISTORIA / CONTEXTO ============ -->
+  <section class="screen" id="scr-story">
+    <div class="eyebrow">El encargo</div>
+    <h2>Un caso aterriza en tu escritorio</h2>
+    <div class="panel">
+      <div class="doc story-doc">
+        <div class="doc-stamp">Confidencial</div>
+        <p>Son las 7 de la mañana en la redacción. El olor a café se mezcla con el de los periódicos viejos. El Editor Jefe entra con paso firme y deja un grueso sobre amarillo sobre tu escritorio.</p>
+        <p>«Te elegí a ti para esto. <b>Necesitamos que resuelvas este caso.</b> El nuevo Teatro Municipal de Piura lleva años en obras y nadie da una respuesta clara: ¿cuánto cuesta de verdad?, ¿por qué no avanza?, ¿quién responde por el dinero de la gente?»</p>
+        <p>«En la calle circula un post viral con cifras alarmantes. Tu trabajo es separar el rumor de la verdad: revisa el expediente, pisa el terreno, contrasta cada dato y publica solo lo que puedas <span class="hl">probar con documentos</span>. La credibilidad del diario está en tus manos.»</p>
+        <p class="sign">— Editor Jefe, Diario El Vigía de Piura</p>
+      </div>
+    </div>
+    <div class="btnrow">
+      <button class="btn" onclick="go('char')">Aceptar el encargo →</button>
+      <button class="btn ghost" onclick="go('menu')">← Menú</button>
+    </div>
+  </section>
+
+  <!-- ============ SELECCIÓN DE PERIODISTA ============ -->
+  <section class="screen" id="scr-char">
+    <div class="eyebrow">Acreditación · Identifícate</div>
+    <h2>¿Quién firma la investigación?</h2>
+    <p class="lead">Elige tu identidad como reportero/a y escribe tu nombre. Tu foto y tu nombre aparecerán en la credencial final.</p>
+    <div class="panel">
+      <div class="char-wrap">
+        <div class="char-cards">
+          <div class="char-card" id="card-h" onclick="selectGender('h',this)">
+            <div class="img char-photo" data-img="periodista_h"><div class="ph"><span class="ic">👨‍💼</span><span>Periodista (hombre)</span><code>IMAGES.periodista_h</code></div></div>
+            <div class="char-label">Hombre</div>
+            <span class="pick">Tocar para elegir</span>
+          </div>
+          <div class="char-card" id="card-m" onclick="selectGender('m',this)">
+            <div class="img char-photo" data-img="periodista_m"><div class="ph"><span class="ic">👩‍💼</span><span>Periodista (mujer)</span><code>IMAGES.periodista_m</code></div></div>
+            <div class="char-label">Mujer</div>
+            <span class="pick">Tocar para elegir</span>
+          </div>
+        </div>
+        <div class="name-field">
+          <label>Nombre del reportero/a</label>
+          <input id="nameInput" type="text" maxlength="28" placeholder="Escribe tu nombre…" oninput="onNameInput()" autocomplete="off">
+        </div>
+      </div>
+    </div>
+    <div class="btnrow">
+      <button class="btn" id="charNext" disabled onclick="go('intro')">Comenzar la investigación →</button>
+      <button class="btn ghost" onclick="go('story')">← Atrás</button>
     </div>
   </section>
 
@@ -445,7 +602,7 @@ h2{font-family:'Oswald';font-weight:600;text-transform:uppercase;letter-spacing:
       </div>
     </div>
     <div class="btnrow">
-      <button class="btn" onclick="go('intro')">▶ Empezar</button>
+      <button class="btn" onclick="go('story')">▶ Empezar</button>
       <button class="btn ghost" onclick="go('menu')">← Volver al menú</button>
     </div>
   </section>
@@ -461,7 +618,7 @@ h2{font-family:'Oswald';font-weight:600;text-transform:uppercase;letter-spacing:
       <div class="doc" style="font-size:14px">
         <div class="doc-stamp">Brief</div>
         Bienvenidos al equipo. Lo que tienen en sus manos no es un simple fajo de papeles; es la clave para entender por qué Piura sigue esperando su gran Teatro Municipal.<br><br>
-        Estamos en 2026. En julio de 2025 se aprobó un expediente técnico bajo el <b>CUI 2523322</b>. El presupuesto: <span class="hl">S/ 90,752,860.22</span>. El plazo prometido: <span class="hl">480 días calendario</span>.<br><br>
+        Estamos en 2026. En julio de 2025 se aprobó un expediente técnico bajo el <b>(Código Único de Inversión) CUI N° 2523322</b>. El presupuesto: <span class="hl">S/ 90,752,860.22</span>. El plazo prometido: <span class="hl">480 días calendario</span>.<br><br>
         Su deber es la verdad y el rigor: revisen el expediente, validen las cifras e identifiquen a los responsables. Abran la carpeta y que empiece la verificación.
       </div>
     </div>
@@ -573,7 +730,7 @@ h2{font-family:'Oswald';font-weight:600;text-transform:uppercase;letter-spacing:
     <div class="btnrow">
       <button class="btn gold" id="fcNext" disabled onclick="go('s1d')">Registrar desmentido →</button>
       <button class="btn ghost" onclick="go('s1b')">← Ver evidencia</button>
-      <button class="btn ghost sm" onclick="resetFC()">↺ Reiniciar tarjetas</button>
+      <button class="btn ghost" onclick="resetFC()">↺ Reiniciar tarjetas</button>
     </div>
   </section>
 
@@ -605,26 +762,31 @@ h2{font-family:'Oswald';font-weight:600;text-transform:uppercase;letter-spacing:
     <div class="btnrow" style="justify-content:center"><button class="btn" onclick="go('s2a')">Ir a la Estación 2 →</button></div>
   </section>
 
-  <!-- ============ ESTACIÓN 2A — EXPLORACIÓN ============ -->
+  <!-- ============ ESTACIÓN 2A — ROMPECABEZAS ============ -->
   <section class="screen" id="scr-s2a">
     <div class="eyebrow">Estación 2 · El terreno de la obra</div>
     <h2>Inspección de la obra</h2>
-    <p class="lead">¡Atención, equipo! Escondieron los documentos clave. Toca los objetos entre los escombros y encuentra las <b>2 evidencias</b> ocultas.</p>
-    <div class="panel">
+    <p class="lead">Una fotografía clave de la obra llegó hecha pedazos. <b>Toca dos piezas para intercambiarlas</b> y reconstruye la imagen. Cuando esté completa, haz clic sobre ella para retirarla y descubrir lo que escondía.</p>
+    <div class="panel" style="flex-direction:column;gap:14px;align-items:stretch">
       <div class="scene" data-img="terreno">
-        <div class="hotspots">
-          <div class="spot" onclick="dig(this,'')"><span class="ico">🧱</span>Montículo de ladrillos</div>
-          <div class="spot" onclick="dig(this,'factura')"><span class="ico">🪣</span>Balde de construcción</div>
-          <div class="spot" onclick="dig(this,'')"><span class="ico">⛑️</span>Malla de seguridad</div>
-          <div class="spot" onclick="dig(this,'planos')"><span class="ico">🟫</span>Tubo de PVC</div>
+        <div class="puzzle-stage">
+          <div class="reveal-docs">
+            <div class="r-doc img" data-img="factura"><div class="ph"><span class="ic">📄</span><span>Primera factura</span><code>IMAGES.factura</code></div></div>
+            <div class="r-doc img" data-img="planos"><div class="ph"><span class="ic">📐</span><span>Planos enrollados</span><code>IMAGES.planos</code></div></div>
+          </div>
+          <div class="puzzle" id="puzzle"></div>
         </div>
       </div>
+      <div class="puzzle-done" id="puzzleDone">Toca dos piezas para intercambiarlas y completar la imagen</div>
       <div class="findbar">
         <span class="chip" id="chip-factura">📄 Primera factura</span>
         <span class="chip" id="chip-planos">📐 Planos enrollados</span>
       </div>
     </div>
-    <div class="btnrow"><button class="btn" id="s2aNext" disabled onclick="go('s2b')">Llevar evidencia a la pizarra →</button></div>
+    <div class="btnrow">
+      <button class="btn ghost sm" onclick="resetS2A()">↺ Mezclar piezas</button>
+      <button class="btn" id="s2aNext" disabled onclick="go('s2b')">Llevar evidencia a la pizarra →</button>
+    </div>
   </section>
 
   <!-- ============ ESTACIÓN 2B — PIZARRA (drag) + AUDITOR ============ -->
@@ -636,7 +798,7 @@ h2{font-family:'Oswald';font-weight:600;text-transform:uppercase;letter-spacing:
       <div class="pz-stage">
         <div class="ev-bank">
           <div class="tray-title">Evidencia recuperada</div>
-          <div class="ev-item" data-ev="factura"><span class="ico">📄</span>Primera factura</div>
+          <div class="ev-item" data-ev="factura" style="background-image: url(${IMAGES.puzzle});"><span class="ico">📄</span>Primera factura</div>
           <div class="ev-item" data-ev="planos"><span class="ico">📐</span>Planos enrollados</div>
         </div>
         <div class="pizarra" data-zone="pizarra">
@@ -681,9 +843,11 @@ h2{font-family:'Oswald';font-weight:600;text-transform:uppercase;letter-spacing:
         <div class="codecell" id="cellDel"><label>% de retraso en la primera semana (9 días)</label><input id="delInput" inputmode="decimal" placeholder="0.0" autocomplete="off"></div>
       </div>
       <div class="code-msg" id="despMsg" style="text-align:center;margin-top:16px"></div>
-      <div style="text-align:center;margin-top:8px"><button class="btn green" onclick="checkDespacho()">📨 Enviar despacho</button></div>
     </div>
-    <div class="btnrow"><button class="btn ghost" onclick="go('s2c')">← Releer el informe</button></div>
+    <div class="btnrow">
+      <button class="btn ghost" onclick="go('s2c')">← Releer el informe</button>
+      <button class="btn green" onclick="checkDespacho()">📨 Enviar despacho</button>
+    </div>
   </section>
 
   <!-- ============ FASE 3A — SELECCIÓN DE TITULAR ============ -->
@@ -731,10 +895,10 @@ h2{font-family:'Oswald';font-weight:600;text-transform:uppercase;letter-spacing:
       <div class="credential">
         <div class="cred-top"><span>Prensa · Acreditación</span><span>Expediente Oculto</span></div>
         <div class="cred-body">
-          <div class="img" data-img="credencial"><div class="ph" style="padding:6px"><span class="ic">🪪</span><code>IMAGES.credencial</code></div></div>
+          <div class="img" id="credPhoto" data-img="credencial"><div class="ph" style="padding:6px"><span class="ic">🪪</span><code>IMAGES.credencial</code></div></div>
           <div class="cred-info">
             <b>Reportero/a de investigación</b>
-            <div class="nm">Equipo Teatro Piura</div>
+            <div class="nm" id="credName">Equipo Teatro Piura</div>
             <div class="row">Caso: CUI 2523322</div>
             <div class="row">Reputación: <span id="finalRep">100%</span></div>
             <div class="row">Hallazgo: S/ 90.7M · Verificado ✔</div>
@@ -759,15 +923,20 @@ h2{font-family:'Oswald';font-weight:600;text-transform:uppercase;letter-spacing:
    ===================================================================== */
 var IMAGES = {
   menu:        "",   // Fondo del menú: tablero con recortes, fotos del teatro y pizarra
-  office:      "",   // Estación intro: oficina del equipo de investigación
+  office:      "img/office.png",   // Estación intro: oficina del equipo de investigación
+  periodista_h:"img/phombre.png",   // Foto representativa del periodista HOMBRE (selección + credencial final)
+  periodista_m:"img/pmujer.png",   // Foto representativa del periodista MUJER (selección + credencial final)
   post:        "",   // Avatar del perfil @PiuraDenunciaNoticias (opcional)
-  postimg:     "",   // Imagen adjunta al post viral
-  portada:     "",   // Pista A: portada del expediente (nombre + CUI)
-  presupuesto: "",   // Pista B: tabla de presupuesto (pág. 20)
-  plazo:       "",   // Pista C: plazo de ejecución (pág. 16)
-  terreno:     "",   // Estación 2: la obra a medio construir
-  auditor:     "",   // Auditor de la Contraloría (chaleco rojo y blanco)
-  credencial:  ""    // Final: foto de la credencial de prensa
+  postimg:     "img/postimg.png",   // Imagen adjunta al post viral
+  portada:     "img/pista_a.png",   // Pista A: portada del expediente (nombre + CUI)
+  presupuesto: "img/pista_b.png",   // Pista B: tabla de presupuesto (pág. 20)
+  plazo:       "img/pista_c.png",   // Pista C: plazo de ejecución (pág. 16)
+  terreno:     "img/fondo.png",   // Estación 2: la obra a medio construir (fondo de la escena)
+  puzzle:      "img/puzzle.png",   // Estación 2A: IMAGEN del rompecabezas (se trocea en 3x3 automáticamente)
+  factura:     "img/factura.png",   // Estación 2A: documento de la factura (detrás del rompecabezas)
+  planos:      "img/planos.png",   // Estación 2A: documento de los planos (detrás del rompecabezas)
+  auditor:     "img/auditor.png",   // Auditor de la Contraloría (chaleco rojo y blanco)
+  credencial:  "img/auditor.png"    // Final: foto por defecto si no se eligió periodista
 };
 /* ▲▲▲  FIN DE LA CONFIGURACIÓN  ▲▲▲ */
 
@@ -778,7 +947,9 @@ var gameState = {
   timer: null,
   seconds: 0,
   selectedHeadline: null,
-  isTimerRunning: false
+  isTimerRunning: false,
+  gender: null,
+  playerName: ""
 };
 
 function updateReputation(change) {
@@ -858,7 +1029,8 @@ function loadImages(){
 /* =====================================================================
    NAVEGACIÓN
    ===================================================================== */
-var STEP_OF={intro:'Briefing',s1a:'Estación 1',s1b:'Estación 1',s1c:'Estación 1',
+var STEP_OF={story:'El encargo',char:'Acreditación',intro:'Briefing',
+  s1a:'Estación 1',s1b:'Estación 1',s1c:'Estación 1',
   s1d:'Estación 1',s1ok:'Estación 1 ✔',s2a:'Estación 2',s2b:'Estación 2',
   s2c:'Estación 2',s2d:'Estación 2',s3a:'Fase 3',s3b:'Impacto',final:'Cierre ✔'};
 
@@ -870,17 +1042,21 @@ function go(scr){
   var bar=document.getElementById('stepsBar');
   bar.innerHTML=STEP_OF[scr]?('Fase: <b>&nbsp;'+STEP_OF[scr]+'</b>'):'';
 
-  // Mostrar/Ocultar barra de estadísticas
+  // Mostrar/Ocultar barra de estadísticas y bitácora
+  var noUi=['menu','howto','story','char','intro','final'];
   var sBar = document.getElementById('statsBar');
-  if(['menu', 'howto', 'intro', 'final'].includes(scr)) sBar.classList.add('hidden');
-  else sBar.classList.remove('hidden');
+  if(noUi.includes(scr)) sBar.classList.add('hidden'); else sBar.classList.remove('hidden');
+  var bBtn = document.getElementById('bookBtn');
+  if(['menu','howto','story','char','final'].includes(scr)) bBtn.classList.add('hidden'); else bBtn.classList.remove('hidden');
+  if(document.getElementById('bookOverlay').classList.contains('open')) toggleBook();
 
   if(scr==='s1a') {
     startTimer();
     notifyEditor("¡Escucha! Ese post viral está incendiando la ciudad. Necesito que verifiques esos 100 millones AHORA.");
   }
   if(scr==='s1c') renderFC();
-  if(scr==='s2a') notifyEditor("Bien hecho con el CUI. Ahora estamos en el terreno. Busca cualquier papel que hayan dejado los obreros.");
+  if(scr==='s2a'){ resetS2A(); notifyEditor("Bien hecho con el CUI. Ahora estamos en el terreno. Arma el rompecabezas para descubrir lo que esconde la obra."); }
+  if(scr==='s2c'){ addClue('invasion'); addClue('retraso'); addClue('contingencia'); }
   if(scr==='s3a') {
     clearInterval(gameState.timer);
     notifyEditor("¡Tengo la rotativa lista! Elige un titular. Tu reputación depende de qué tan fiel seas a la verdad.");
@@ -888,7 +1064,29 @@ function go(scr){
   if(scr==='final') finalizeGame();
 }
 
+/* ---------- selección de periodista ---------- */
+function selectGender(g, card){
+  gameState.gender=g;
+  document.querySelectorAll('.char-card').forEach(function(c){c.classList.remove('selected')});
+  card.classList.add('selected');
+  checkCharReady();
+}
+function onNameInput(){
+  gameState.playerName=document.getElementById('nameInput').value.trim();
+  checkCharReady();
+}
+function checkCharReady(){
+  document.getElementById('charNext').disabled = !(gameState.gender && gameState.playerName.length>0);
+}
+function applyIdentity(){
+  var cp=document.getElementById('credPhoto');
+  var src = gameState.gender ? IMAGES['periodista_'+gameState.gender] : IMAGES.credencial;
+  if(src){cp.style.backgroundImage="url('"+src+"')";cp.classList.add('has-img');}
+  document.getElementById('credName').textContent = gameState.playerName || 'Equipo Teatro Piura';
+}
+
 function finalizeGame() {
+  applyIdentity();
   document.getElementById('finalRep').textContent = gameState.reputation + '%';
   var title = document.getElementById('finalTitle');
   var lead = document.getElementById('finalLead');
@@ -926,13 +1124,17 @@ function restart(){
   document.getElementById('cuiInput').value='';
   setMsg('cuiMsg','','');
   found={factura:false,planos:false};
-  document.querySelectorAll('#scr-s2a .spot').forEach(function(s){
-    s.classList.remove('found');s.onclick=null;});
-  rebindSpots();
-  document.getElementById('s2aNext').disabled=true;
+  resetS2A();
   document.getElementById('chip-factura').className='chip';
   document.getElementById('chip-planos').className='chip';
   resetPizarra();
+  // identidad, pistas y bitácora
+  gameState.gender=null;gameState.playerName="";
+  document.querySelectorAll('.char-card').forEach(function(c){c.classList.remove('selected')});
+  var ni=document.getElementById('nameInput');if(ni)ni.value="";
+  document.getElementById('charNext').disabled=true;
+  foundClues={};renderBook();
+  if(document.getElementById('bookOverlay').classList.contains('open')) toggleBook();
   document.getElementById('invInput').value='';document.getElementById('delInput').value='';
   document.getElementById('cellInv').classList.remove('ok');document.getElementById('cellDel').classList.remove('ok');
   setMsg('despMsg','','');
@@ -958,7 +1160,7 @@ function resetPhoneCue(){
    PISTAS (estación 1b) — clic para revelar
    ===================================================================== */
 var EV_TEXT=[
-  '"…Teatro Municipal de Piura…" <span class="hl">CUI N° 2523322</span>',
+  '"…Teatro Municipal de Piura…" <span class="hl"> (Código Único de Inversión) CUI N° 2523322</span>',
   'Costo total de inversión (S/.) = <span class="hl">90,752,860.22</span>',
   'Plazo de ejecución: <span class="hl">480 días calendario</span> (16 meses)'
 ];
@@ -969,7 +1171,47 @@ function openEv(card){
   card.querySelector('.reveal').innerHTML=EV_TEXT[i];
   card.querySelector('.tap').textContent='✓ Pista resaltada';
   evOpened[i]=true;
+  if(i==='0') addClue('cui');
+  if(i==='1') addClue('costo');
+  if(i==='2') addClue('plazo');
   if(Object.keys(evOpened).length>=3)document.getElementById('s1bNext').disabled=false;
+}
+
+/* =====================================================================
+   BITÁCORA DEL CASO (libro de pistas)
+   ===================================================================== */
+var CLUES=[
+  {id:'cui',         ic:'🔖', label:'CUI del proyecto',                 value:'2523322'},
+  {id:'costo',       ic:'💰', label:'Costo total de inversión',         value:'S/ 90,752,860.22'},
+  {id:'plazo',       ic:'📅', label:'Plazo de ejecución',               value:'480 días calendario (16 meses)'},
+  {id:'invasion',    ic:'📐', label:'Invasión del terreno',             value:'3.5 metros'},
+  {id:'retraso',     ic:'⏱️', label:'Retraso 1ª semana (9 días)',       value:'0.8 %'},
+  {id:'contingencia',ic:'🌧️', label:'Plan de contingencia (drenaje)',   value:'S/ 2,178,108.10'}
+];
+var foundClues={};
+function addClue(id){
+  if(foundClues[id])return;
+  foundClues[id]=true;
+  renderBook();
+  var btn=document.getElementById('bookBtn');
+  if(btn){btn.classList.remove('book-pulse');void btn.offsetWidth;btn.classList.add('book-pulse');}
+}
+function renderBook(){
+  var box=document.getElementById('bookEntries');if(!box)return;
+  box.innerHTML='';
+  var n=0;
+  CLUES.forEach(function(c){
+    var has=foundClues[c.id];if(has)n++;
+    var row=document.createElement('div');
+    row.className='book-entry'+(has?'':' locked');
+    row.innerHTML='<span class="bk-ic">'+c.ic+'</span><div><div class="bk-label">'+c.label+'</div>'+
+      '<div class="bk-val">'+(has?c.value:'— por descubrir —')+'</div></div>';
+    box.appendChild(row);
+  });
+  var badge=document.getElementById('bookBadge');if(badge)badge.textContent=n;
+}
+function toggleBook(){
+  document.getElementById('bookOverlay').classList.toggle('open');
 }
 
 /* =====================================================================
@@ -1082,34 +1324,92 @@ function checkCUI(){
   if(v==='2523322'){setMsg('cuiMsg','✔ Código validado · luz verde encendida','ok');
     addToInventory('llave', '🗝️', 'Llave de la obra');
     setTimeout(function(){go('s1ok')},650);}
-  else{setMsg('cuiMsg','✘ Código incorrecto. Revisa la Pista A.','err');}
+  else{setMsg('cuiMsg','✘ Código incorrecto. Revisa tu bitácora.','err');}
 }
 document.getElementById('cuiInput').addEventListener('keydown',function(e){if(e.key==='Enter')checkCUI();});
 
 /* =====================================================================
-   EXPLORACIÓN (estación 2a)
+   ROMPECABEZAS (estación 2a) — armar imagen, retirar y revelar documentos
    ===================================================================== */
 var found={factura:false,planos:false};
-function dig(el,what){
-  if(el.classList.contains('found'))return;
-  if(what===''){el.style.transition='transform .1s';el.style.transform='translateY(2px) rotate(-1deg)';
-    setTimeout(function(){el.style.transform=''},120);return;}
-  found[what]=true;el.classList.add('found');
-  el.innerHTML=(what==='factura'?'<span class="ico">📄</span>¡Factura hallada!':'<span class="ico">📐</span>¡Planos hallados!')+'<span class="badge">✓</span>';
-  document.getElementById('chip-'+what).className='chip got';
-  
-  if(what==='factura') addToInventory('factura', '📄', 'Factura');
-  if(what==='planos') addToInventory('planos', '📐', 'Planos');
+var PSIZE=3;                 // 3x3
+var puzzleOrder=[];          // puzzleOrder[celda] = pieza que está en esa celda
+var puzzleSel=-1, puzzleSolved=false, puzzleRemoved=false;
 
-  if(found.factura&&found.planos)document.getElementById('s2aNext').disabled=false;
+function buildPuzzle(){
+  var p=document.getElementById('puzzle');if(!p)return;
+  if(IMAGES.puzzle){ p.style.setProperty('--puzzle-img',"url('"+IMAGES.puzzle+"')"); p.classList.remove('no-img'); }
+  else { p.style.setProperty('--puzzle-img','none'); p.classList.add('no-img'); }
+  shufflePuzzle();
+  renderPuzzle();
 }
-function rebindSpots(){
-  var spots=document.querySelectorAll('#scr-s2a .spot');
-  var map=['','factura','','planos'];var icons=['🧱','🪣','⛑️','🟫'];var labels=['Montículo de ladrillos','Balde de construcción','Malla de seguridad','Tubo de PVC'];
-  spots.forEach(function(s,i){
-    s.innerHTML='<span class="ico">'+icons[i]+'</span>'+labels[i];
-    (function(w){s.onclick=function(){dig(s,w)}})(map[i]);
+function isSolved(){for(var i=0;i<puzzleOrder.length;i++)if(puzzleOrder[i]!==i)return false;return true;}
+function shufflePuzzle(){
+  var n=PSIZE*PSIZE;puzzleOrder=[];for(var i=0;i<n;i++)puzzleOrder.push(i);
+  do{ for(var i=n-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=puzzleOrder[i];puzzleOrder[i]=puzzleOrder[j];puzzleOrder[j]=t;} }
+  while(isSolved());
+  puzzleSel=-1;puzzleSolved=false;puzzleRemoved=false;
+}
+function renderPuzzle(){
+  var p=document.getElementById('puzzle');if(!p)return;
+  p.classList.remove('solved','removed');p.style.display='';p.innerHTML='';
+  var step=100/(PSIZE-1);
+  puzzleOrder.forEach(function(piece,cell){
+    var col=piece%PSIZE, row=Math.floor(piece/PSIZE);
+    var t=document.createElement('div');
+    t.className='ptile';
+    t.style.backgroundPosition=(col*step)+'% '+(row*step)+'%';
+    t.innerHTML='<span class="pnum">'+(piece+1)+'</span>';
+    t.onclick=function(){tileClick(cell)};
+    p.appendChild(t);
   });
+}
+function tileClick(cell){
+  if(puzzleSolved){ removePuzzle(); return; }      // ya resuelto: el clic lo retira
+  if(puzzleSel===-1){ puzzleSel=cell; markSel(); return; }
+  if(puzzleSel===cell){ puzzleSel=-1; markSel(); return; }
+  var t=puzzleOrder[puzzleSel];puzzleOrder[puzzleSel]=puzzleOrder[cell];puzzleOrder[cell]=t;
+  puzzleSel=-1;renderPuzzle();
+  if(isSolved()) onPuzzleSolved();
+}
+function markSel(){
+  var tiles=document.querySelectorAll('#puzzle .ptile');
+  tiles.forEach(function(t,i){t.classList.toggle('sel',i===puzzleSel)});
+}
+function onPuzzleSolved(){
+  puzzleSolved=true;
+  var p=document.getElementById('puzzle');p.classList.add('solved');
+  var done=document.getElementById('puzzleDone');
+  if(done){done.textContent='✓ ¡Imagen completada! Haz clic sobre ella para retirarla';done.classList.add('ok');}
+  notifyEditor("¡Buen ojo! Armaste la fotografía. Retírala para ver qué escondía.");
+}
+function removePuzzle(){
+  if(puzzleRemoved)return;puzzleRemoved=true;
+  var p=document.getElementById('puzzle');p.classList.add('removed');
+  setTimeout(function(){p.style.display='none';},560);
+  var done=document.getElementById('puzzleDone');
+  if(done){done.textContent='Documentos al descubierto';done.classList.remove('ok');}
+  revealDocs();
+}
+function revealDocs(){
+  document.querySelectorAll('#scr-s2a .r-doc').forEach(function(d){d.classList.add('shown')});
+  found.factura=true;found.planos=true;
+  document.getElementById('chip-factura').className='chip got';
+  document.getElementById('chip-planos').className='chip got';
+  addToInventory('factura','📄','Factura');
+  addToInventory('planos','📐','Planos');
+  document.getElementById('s2aNext').disabled=false;
+  notifyEditor("¡Ahí están! La factura y los planos. Llévalos a la pizarra.");
+}
+function resetS2A(){
+  found={factura:false,planos:false};
+  document.querySelectorAll('#scr-s2a .r-doc').forEach(function(d){d.classList.remove('shown')});
+  var done=document.getElementById('puzzleDone');
+  if(done){done.textContent='Toca dos piezas para intercambiarlas y completar la imagen';done.classList.remove('ok');}
+  document.getElementById('chip-factura').className='chip';
+  document.getElementById('chip-planos').className='chip';
+  document.getElementById('s2aNext').disabled=true;
+  buildPuzzle();
 }
 
 /* =====================================================================
@@ -1172,7 +1472,7 @@ function checkDespacho(){
   else{
     updateReputation(-5);
     var p=[];if(!okInv)p.push('metros invadidos');if(!okDel)p.push('% de retraso');
-    setMsg('despMsg','✘ Revisa: '+p.join(' y ')+'. Las cifras están en el informe (3.5 y 0.8).','err');
+    setMsg('despMsg','✘ Revisa: '+p.join(' y ')+'. Las cifras están en tu bitácora.','err');
   }
 }
 document.getElementById('delInput').addEventListener('keydown',function(e){if(e.key==='Enter')checkDespacho();});
@@ -1252,6 +1552,8 @@ function drawQR(){
    ===================================================================== */
 loadImages();
 initPizarra();
+resetS2A();
+renderBook();
 drawQR();
 </script>
 </body>
