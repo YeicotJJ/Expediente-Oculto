@@ -479,10 +479,66 @@ h2{font-family:'Oswald';font-weight:600;text-transform:uppercase;letter-spacing:
 .puzzle-done{text-align:center;font-family:'Oswald';text-transform:uppercase;letter-spacing:.06em;
   font-size:13px;color:var(--steel);margin-top:10px}
 .puzzle-done.ok{color:var(--green)}
+/* ---------- PANTALLA DE CARGA (precarga de multimedia) ---------- */
+#preloader{position:fixed;inset:0;z-index:9999;background:
+  radial-gradient(900px 600px at 80% -10%,rgba(181,48,36,.14),transparent 60%),
+  radial-gradient(700px 500px at 0% 110%,rgba(245,213,71,.08),transparent 60%),
+  var(--ink);
+  display:flex;align-items:center;justify-content:center;padding:24px;
+  transition:opacity .5s ease}
+#preloader.gone{opacity:0;pointer-events:none}
+.pl-box{width:min(440px,100%);text-align:center}
+.pl-brand{font-family:'Oswald';font-weight:700;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--red);font-size:13px;margin-bottom:14px}
+.pl-title{font-family:'Oswald';font-weight:700;text-transform:uppercase;line-height:.92;
+  font-size:clamp(38px,9vw,64px);color:#f4ecda;margin-bottom:6px}
+.pl-title span{color:var(--red)}
+.pl-sub{font-family:'Oswald';letter-spacing:.16em;text-transform:uppercase;color:var(--manila);
+  font-size:12px;margin-bottom:26px;opacity:.8}
+.pl-stamp{display:inline-block;font-family:'Oswald';font-weight:700;text-transform:uppercase;
+  letter-spacing:.1em;color:var(--stamp);border:2.5px solid var(--stamp);border-radius:6px;
+  padding:4px 12px;transform:rotate(-4deg);font-size:12px;margin-bottom:18px;opacity:.9;
+  background:rgba(10,7,4,.35)}
+.pl-scan{position:relative;height:8px;border-radius:4px;overflow:hidden;
+  background:rgba(232,217,184,.1);border:1px solid rgba(232,217,184,.18)}
+.pl-bar{position:absolute;left:0;top:0;bottom:0;width:0%;transition:width .25s ease;
+  background:linear-gradient(90deg,var(--red),var(--hl))}
+.pl-scan::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:repeating-linear-gradient(45deg,rgba(0,0,0,.18) 0 6px,transparent 6px 12px);
+  mix-blend-mode:overlay}
+.pl-meta{display:flex;justify-content:space-between;align-items:center;margin-top:10px;
+  font-family:'Oswald';letter-spacing:.08em;text-transform:uppercase;font-size:11px;color:var(--steel)}
+.pl-meta b{color:var(--hl)}
+.pl-file{font-family:'Special Elite';font-size:12px;color:var(--steel);margin-top:14px;
+  min-height:18px;word-break:break-all;opacity:.85}
+.pl-status{font-family:'Oswald';letter-spacing:.16em;text-transform:uppercase;font-size:12px;
+  color:var(--steel2);margin-top:22px}
+.pl-status .dot1,.pl-status .dot2,.pl-status .dot3{animation:blink 1.4s infinite}
+.pl-status .dot2{animation-delay:.2s}.pl-status .dot3{animation-delay:.4s}
+@keyframes blink{0%,20%{opacity:.15}50%{opacity:1}100%{opacity:.15}}
+.pl-btn{margin-top:20px}
+.pl-warn{color:#ff8577;font-family:'Special Elite';font-size:12px;margin-top:10px;min-height:16px}
 
 </style>
 </head>
 <body>
+
+<!-- ============ PANTALLA DE CARGA ============ -->
+<div id="preloader" role="status" aria-live="polite">
+  <div class="pl-box">
+    <div class="pl-stamp">Confidencial</div>
+    <div class="pl-brand">Redacción de Investigación</div>
+    <div class="pl-title">EXPEDIENTE <span>OCULTO</span></div>
+    <div class="pl-sub">Preparando el expediente…</div>
+    <div class="pl-scan"><div class="pl-bar" id="plBar"></div></div>
+    <div class="pl-meta"><span>Cargando archivos</span><span><b id="plCount">0</b> / <span id="plTotal">0</span></span></div>
+    <div class="pl-file" id="plFile">Iniciando…</div>
+    <div class="pl-status">Descifrando documentos<span class="dot1">.</span><span class="dot2">.</span><span class="dot3">.</span></div>
+    <div class="pl-warn" id="plWarn"></div>
+    <button class="btn ghost sm pl-btn hidden" id="plSkip" onclick="hidePreloader()">Saltar y continuar</button>
+  </div>
+</div>
+
 <div class="app">
 
   <!-- Efecto Flash -->
@@ -1548,13 +1604,74 @@ function drawQR(){
 }
 
 /* =====================================================================
+   PRECARGA DE MULTIMEDIA
+   ===================================================================== */
+function preloadImages(onDone){
+  var entries=[];
+  for(var k in IMAGES){ if(IMAGES.hasOwnProperty(k) && IMAGES[k]) entries.push({key:k,src:IMAGES[k]}); }
+  var total=entries.length;
+  var totalEl=document.getElementById('plTotal');
+  var countEl=document.getElementById('plCount');
+  var barEl=document.getElementById('plBar');
+  var fileEl=document.getElementById('plFile');
+  var warnEl=document.getElementById('plWarn');
+  var skipBtn=document.getElementById('plSkip');
+  totalEl.textContent=total;
+
+  if(total===0){ // nada que precargar → cerrar rápido
+    barEl.style.width='100%';
+    fileEl.textContent='Sin multimedia configurada.';
+    setTimeout(onDone,350);
+    return;
+  }
+
+  var done=0, failed=0;
+  // botón "Saltar" tras 4s por si un archivo tarda demasiado o no existe
+  var skipTimer=setTimeout(function(){ if(done<total) skipBtn.classList.remove('hidden'); }, 4000);
+
+  // salvavidas absoluto: si algo se cuelga, cerrar tras 12s
+  var hardStop=setTimeout(function(){ if(done<total){ warnEl.textContent='La carga tardó demasiado, continuando…'; finish(); } }, 12000);
+
+  function tick(entry){
+    done++;
+    countEl.textContent=done;
+    barEl.style.width=(done/total*100).toFixed(1)+'%';
+    fileEl.textContent=(entry?('› '+entry.key+' — '+entry.src):'');
+    if(done>=total) finish();
+  }
+  function finish(){
+    clearTimeout(skipTimer);clearTimeout(hardStop);
+    if(failed>0) warnEl.textContent=failed+' archivo(s) no se pudo(ieron) cargar. Revisa las rutas en IMAGES.';
+    setTimeout(onDone,failed>0?900:400); // pequeña pausa para que se vea el 100%
+  }
+
+  entries.forEach(function(entry){
+    var img=new Image();
+    img.onload =function(){ tick(entry); };
+    img.onerror=function(){ failed++; tick(entry); };
+    // por si el navegador ya la tenía en caché y no dispara load
+    img.src=entry.src;
+    if(img.complete && img.naturalWidth>0){ setTimeout(function(){ tick(entry); },0); }
+  });
+}
+function hidePreloader(){
+  var p=document.getElementById('preloader');
+  if(!p||p.classList.contains('gone'))return;
+  p.classList.add('gone');
+  setTimeout(function(){ if(p.parentNode) p.parentNode.removeChild(p); }, 550);
+}
+
+/* =====================================================================
    INIT
    ===================================================================== */
-loadImages();
 initPizarra();
 resetS2A();
 renderBook();
 drawQR();
+preloadImages(function(){
+  loadImages();   // aplicar imágenes ya cacheadas a los slots
+  hidePreloader();
+});
 </script>
 </body>
 </html>
