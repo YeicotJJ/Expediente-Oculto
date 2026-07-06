@@ -124,7 +124,7 @@ h2{font-family:'Oswald';font-weight:600;text-transform:uppercase;letter-spacing:
 .doc{background:var(--paper);color:#22201a;border-radius:3px;padding:24px;
   font-family:'Special Elite';line-height:1.6;box-shadow:0 14px 34px var(--shadow);position:relative;
   background-image:linear-gradient(transparent 95%,rgba(120,100,70,.12) 95%);background-size:100% 28px}
-.doc .doc-stamp{position:absolute;top:14px;right:16px;font-family:'Oswald';font-weight:700;
+.doc .doc-stamp{position:absolute;bottom:14px;right:16px;font-family:'Oswald';font-weight:700;
   color:var(--stamp);border:2px solid var(--stamp);padding:3px 10px;border-radius:4px;
   transform:rotate(6deg);font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.8}
 .doc h4{font-family:'Oswald';text-transform:uppercase;letter-spacing:.05em;color:#1a1813;
@@ -1094,7 +1094,7 @@ function finalizeGame() {
 
   if (gameState.reputation >= 90) {
     title.textContent = "¡Pulitzer Local!";
-    lead.textContent = "Tu rigor ha sido impecable. Has expuesto la verdad con una precisión quirúrgica. Piura te lo agradece.";
+    lead.textContent = "Tu rigor ha sido impecable. Has expuesto la verdad tras una investigación exhaustiva. Piura te lo agradece.";
     seal.textContent = "🏆";
   } else if (gameState.reputation >= 60) {
     title.textContent = "Buen Reportaje";
